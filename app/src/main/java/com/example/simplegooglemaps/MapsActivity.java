@@ -61,7 +61,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng its = new LatLng(-7.28, 112.79);
-        mMap.addMarker(new MarkerOptions().position(its).title("Marker in ITS"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(its, 8));
     }
 
@@ -71,10 +71,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             if (view.getId() == R.id.idGo) {
                 gotoLokasi();
-                sembunyikanKeyBoard(view);
             } else if (view.getId() == R.id.idCari) {
                 goCari();
             }
+            sembunyikanKeyBoard(view);
         }
     };
 
@@ -119,20 +119,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String nemuAlamat =  alamat.getAddressLine(0);
             Double lintang = alamat.getLatitude();
             Double bujur = alamat.getLongitude();
-
+            Integer zm = 10;
             Toast.makeText(getBaseContext(),"Ketemu " + nemuAlamat,Toast.LENGTH_LONG).show();
 
-            EditText zoom = (EditText) findViewById(R.id.idZoom);
-            Float dblzoom = Float.parseFloat(zoom.getText().toString());
+
+            float dblzoom = 10;
             Toast.makeText(this,"Move to "+ nemuAlamat +" Lat:" +
                     lintang + " Long:" +bujur,Toast.LENGTH_LONG).show();
             gotoPeta(lintang,bujur,dblzoom);
 
             EditText lat = (EditText) findViewById(R.id.idLokasiLat);
             EditText lng = (EditText) findViewById(R.id.idLokasiLng);
+            EditText zom = (EditText) findViewById(R.id.idZoom);
+
 
             lat.setText(lintang.toString());
             lng.setText(bujur.toString());
+//            zom.setAlpha(dblzoom);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
