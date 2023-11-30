@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="20dp" />
+        app:layout_constraintGuide_begin="38dp" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/barrier2"
@@ -140,6 +140,24 @@
         </TableRow>
 
     </TableLayout>
+
+    <TextView
+        android:id="@+id/txtLat"
+        android:layout_width="117dp"
+        android:layout_height="20dp"
+        android:text="GPS Latitude"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="38dp"
+        tools:layout_editor_absoluteY="692dp" />
+
+    <TextView
+        android:id="@+id/txtLong"
+        android:layout_width="117dp"
+        android:layout_height="20dp"
+        android:text="GPS Longitude"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="155dp"
+        tools:layout_editor_absoluteY="692dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
