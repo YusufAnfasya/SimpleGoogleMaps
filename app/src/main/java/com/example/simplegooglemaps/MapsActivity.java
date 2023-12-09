@@ -2,9 +2,11 @@ package com.example.simplegooglemaps;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -35,18 +37,17 @@ import com.example.simplegooglemaps.databinding.ActivityMapsBinding;
 import java.io.IOException;
 import java.util.List;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, ConnectionCallbacks, OnConnectionFailedListener, LocationListener
-{
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     public static final int PERMISSION_GET_LAST_LOCATION = 10;
     public static final int PERMISSION_REQUEST_LAST_LOCATION = 11;
 
     private GoogleMap mMap;
     public static final long UPDATE_INTERVAL_IN_MILLISECONDS = 10000;
-    public static final long FASTEST_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS/2;
+    public static final long FASTEST_INTERVAL_IN_MILLISECONDS = UPDATE_INTERVAL_IN_MILLISECONDS / 2;
 
     protected final static String REQUEST_LOCATION_UPDATES_KEY = "requesting-location-updates-key";
-    protected final static String LOCATION_KEY= "requesting-location-updates-key";
+    protected final static String LOCATION_KEY = "requesting-location-updates-key";
     protected final static String LAST_UPDATED_TIME_STRING_KEY = "last-updated-time-string-key";
 
     protected GoogleApi mGoogleApiClient;
@@ -70,69 +71,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected String mLastUpdateTime = "";
 
 
-
     private ActivityMapsBinding binding;
 
     private LocationManager lm;
     private LocationListener ll;
 
-    /**
-     * @param bundle
-     */
-    @Override
-    public void onConnected(@Nullable Bundle bundle) {
 
-    }
+    private class lokasiListener implements LocationListener {
 
-    /**
-     * @param i
-     */
-    @Override
-    public void onConnectionSuspended(int i) {
-
-    }
-
-    /**
-     * @param location the updated location
-     */
-    @Override
-    public void onLocationChanged(@NonNull Location location) {
-
-    }
-
-    /**
-     * @param locations the location list
-     */
-
-
-    /**
-     * @param provider
-     * @param status
-     * @param extras
-     */
-
-
-    /**
-     * @param provider the name of the location provider
-     */
-
-
-    /**
-     * @param provider the name of the location provider
-     */
-    
-
-    /**
-     * @param connectionResult
-     */
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-    private class lokasiListener implements LocationListener{
-
-        private TextView txtLat,txtLong;
+        private TextView txtLat, txtLong;
 
         /**
          * @param location the updated location
@@ -146,7 +93,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             txtLong.setText(String.valueOf(location.getLongitude()));
 
             Toast.makeText(getBaseContext(),
-                    "GPS Capture",Toast.LENGTH_LONG).show();
+                    "GPS Capture", Toast.LENGTH_LONG).show();
         }
 
         /**
@@ -183,10 +130,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-//        mylocationManager = (LocationManager) getSystemService
-//                (Context.LOCATION_SERVICE);
-//        mylocationManager = new lokasiListener();
-//        mylocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,200,mylocationListener)
+        //GPS Locator
+
+        lm = (LocationManager) getSystemService
+                (Context.LOCATION_SERVICE);
+        ll = new lokasiListener();
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 200, ll);
 
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.

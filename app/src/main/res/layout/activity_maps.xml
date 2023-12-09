@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MapsActivity"
-        tools:layout_editor_absoluteX="48dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -38,11 +38,11 @@
 
     <TableLayout
 
-        android:layout_width="335dp"
-        android:padding="5dp"
-        android:layout_height="141dp"
+        android:layout_width="379dp"
+        android:layout_height="223dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/round_corner"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,25 +139,44 @@
                 android:text="Cari" />
         </TableRow>
 
+        <TableRow>
+
+            <Button
+                android:id="@+id/mStartUpdatesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Start Update" />
+
+            <Button
+                android:id="@+id/mStopUpdatesButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Stop Update" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtLong"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:hint="GPS Longitude"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/txtLat"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:hint="GPS Latitude"
+                android:textAlignment="center" />
+        </TableRow>
+
+
     </TableLayout>
-
-    <TextView
-        android:id="@+id/txtLat"
-        android:layout_width="117dp"
-        android:layout_height="20dp"
-        android:text="GPS Latitude"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="38dp"
-        tools:layout_editor_absoluteY="692dp" />
-
-    <TextView
-        android:id="@+id/txtLong"
-        android:layout_width="117dp"
-        android:layout_height="20dp"
-        android:text="GPS Longitude"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="692dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
