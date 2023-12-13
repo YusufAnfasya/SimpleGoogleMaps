@@ -35,6 +35,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.simplegooglemaps.databinding.ActivityMapsBinding;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -79,22 +81,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private class lokasiListener implements LocationListener {
 
-        private TextView txtLat, txtLong;
+        private TextView txtLat, txtLong, txtUpdate;
 
         /**
          * @param location the updated location
          */
         @Override
         public void onLocationChanged(@NonNull Location location) {
+
             txtLat = (TextView) findViewById(R.id.txtLat);
             txtLong = (TextView) findViewById(R.id.txtLong);
+            txtUpdate = (TextView) findViewById(R.id.txtUpdate);
+
 
             txtLat.setText(String.valueOf(location.getLatitude()));
             txtLong.setText(String.valueOf(location.getLongitude()));
+            txtUpdate.setText(DateFormat.getTimeInstance().format(new Date()));
+
+            if(R.id.)
+
+
 
             Toast.makeText(getBaseContext(),
                     "GPS Capture", Toast.LENGTH_LONG).show();
+
+            LatLng Lokasibaru = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.addMarker(new MarkerOptions().
+                    position(Lokasibaru).title("Rute"));
+            mMap.moveCamera(CameraUpdateFactory.
+                    newLatLngZoom(Lokasibaru, 15));
+
         }
+
 
         /**
          * @param provider
@@ -158,6 +176,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         Button cari = (Button) findViewById(R.id.idCari);
         cari.setOnClickListener(op);
+
+//        Button update = (Button) findViewById(R.id.mStartUpdatesButton);
+//        update.setOnClickListener(op);
+//
+//        Button stop = (Button) findViewById(R.id.mStopUpdatesButton);
+//        stop.setOnClickListener(op);
+
+
     }
 
     /**
@@ -188,6 +214,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             } else if (view.getId() == R.id.idCari) {
                 goCari();
             }
+
             sembunyikanKeyBoard(view);
         }
     };

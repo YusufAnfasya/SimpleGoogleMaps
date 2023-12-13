@@ -38,8 +38,8 @@
 
     <TableLayout
 
-        android:layout_width="379dp"
-        android:layout_height="223dp"
+        android:layout_width="381dp"
+        android:layout_height="166dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/round_corner"
         android:padding="5dp"
@@ -133,28 +133,28 @@
 
             <Button
                 android:id="@+id/idCari"
-                android:layout_width="wrap_content"
+                android:layout_width="163dp"
                 android:layout_height="wrap_content"
                 android:layout_span="2"
                 android:text="Cari" />
         </TableRow>
 
-        <TableRow>
+        <!--        <TableRow>-->
 
-            <Button
-                android:id="@+id/mStartUpdatesButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start Update" />
+        <!--            <Button-->
+        <!--                android:id="@+id/mStartUpdatesButton"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Start Update" />-->
 
-            <Button
-                android:id="@+id/mStopUpdatesButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Stop Update" />
+        <!--            <Button-->
+        <!--                android:id="@+id/mStopUpdatesButton"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="Stop Update" />-->
 
 
-        </TableRow>
+        <!--        </TableRow>-->
 
         <TableRow
             android:layout_width="match_parent"
@@ -164,14 +164,24 @@
                 android:id="@+id/txtLong"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:hint="GPS Longitude"
+                android:paddingRight="20dp"
+                android:hint="Latitude"
                 android:textAlignment="center" />
 
             <TextView
                 android:id="@+id/txtLat"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:hint="GPS Latitude"
+                android:paddingRight="20dp"
+                android:hint="Longitude"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/txtUpdate"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:paddingRight="20dp"
+                android:hint="UpdateTime"
                 android:textAlignment="center" />
         </TableRow>
 
